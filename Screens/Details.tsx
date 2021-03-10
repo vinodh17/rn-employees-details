@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Provider } from 'react-redux';
-import Store from './Redux/Store';
-import Navigation from './Routes/Navigation';
 
-export default function App() {
+const Details = (props:any) => {
   return (
-    <Provider store={Store}>
-      <Navigation/>
-    </Provider>
+		<View style={styles.container}>
+			<Text>
+				Details Screen
+				{JSON.stringify(props.route.params.details)}
+			</Text>
+		</View>
   );
 }
 
@@ -20,3 +20,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default Details;
