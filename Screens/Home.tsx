@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import {
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { getPosts } from "../Redux/Actions/action";
 
@@ -27,28 +23,25 @@ const Home = (props: any) => {
     };
   }, [page]);
 
-
-	const navToDetails = (details:any) => {
-		props.navigation.navigate('Details', details);
-	}
+  const navToDetails = (details: any) => {
+    props.navigation.navigate("Details", details);
+  };
 
   return (
-    <View style={styles.container}>
+    <View testID="home-wrapper" style={styles.container}>
       <Text>
-        Home Screen
-        {/* {JSON.stringify(props.posts)} */}
         <FlatList
           data={props.posts}
           keyExtractor={(item: any) => item.key}
           renderItem={({ item }) => (
             <View style={styles.card}>
-                <Text>
-                  <TouchableOpacity onPress={() => navToDetails(item)}>
-                    <Text>Title: {item.title}</Text>
-                    <Text>URL: {item.url}</Text>
-                    <Text>Created At: {item.created_at}</Text>
-                  </TouchableOpacity>
-                </Text>
+              <Text>
+                <TouchableOpacity onPress={() => navToDetails(item)}>
+                  <Text>Title: {item.title}</Text>
+                  <Text>URL: {item.url}</Text>
+                  <Text>Created At: {item.created_at}</Text>
+                </TouchableOpacity>
+              </Text>
             </View>
           )}
           onEndReached={() => setPage(page + 1)}
@@ -64,8 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
   card: {
     marginBottom: 20,
